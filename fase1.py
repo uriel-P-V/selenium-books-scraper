@@ -57,7 +57,6 @@ wait = WebDriverWait(driver, 10)
 conteo_por_categoria = {}
 
 try:
-    # 1. Entrar a "Mystery" y leer los libros de la página
     driver.get(URL_BASE)
     entrar_en_categoria(driver, wait, "Mystery")
     libros_mystery = leer_libros_de_pagina(wait)
@@ -66,13 +65,11 @@ try:
     for libro in libros_mystery:
         print(f"- {libro['titulo']} | £{libro['precio']} | {libro['estrellas']}★ | {libro['stock']}")
 
-    # 2. Ejemplo de paginación en una categoría con múltiples páginas
     driver.get(URL_BASE)
     entrar_en_categoria(driver, wait, "Fiction")
     libros_fiction = leer_todas_las_paginas(driver, wait)
     print(f"\nTotal de libros en Fiction (todas las páginas): {len(libros_fiction)}")
 
-    # 3. Recorrer todas las categorías y guardar {nombre_categoria: cantidad_de_libros}
     driver.get(URL_BASE)
     categorias = obtener_nombres_categorias(driver, wait)
 
